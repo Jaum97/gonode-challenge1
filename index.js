@@ -36,11 +36,9 @@ app.get('/minor', logMiddleware, (req, res) => {
 
 app.post('/check', (req, res) => {
   const { age } = req.body
-  if (age > 17) {
-    return res.redirect(`/major/?age=${age}`)
-  } else {
-    return res.redirect(`/minor/?age=${age}`)
-  }
+  return age > 17
+    ? res.redirect(`/major/?age=${age}`)
+    : res.redirect(`/minor/?age=${age}`)
 })
 
 app.listen(3000)
