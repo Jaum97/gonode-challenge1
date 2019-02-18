@@ -10,9 +10,8 @@ nunjucks.configure('views', {
 })
 
 const ageMiddleware = (req, res) => {
-  req.body.age
-    ? res.render(req.body.age > 17 ? 'major' : 'minor')
-    : res.render('main')
+  const { age } = req.body
+  age ? res.render(age > 17 ? 'major' : 'minor', { age }) : res.render('main')
 }
 
 app.use(express.urlencoded({ extended: false }))
