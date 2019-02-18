@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'njk')
 
 app.get('/', (req, res) => {
-  return res.send('Hello World')
+  return res.render('main')
 })
 
 app.listen(3000)
