@@ -9,11 +9,18 @@ nunjucks.configure('views', {
   watch: true
 })
 
+const ageMiddleware = (req, res) => {
+  const { age } = req.body
+  age ? res.render(age > 17 ? 'major' : 'minor', { age }) : res.render('main')
+}
+
 app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'njk')
 
+app.post('/check', ageMiddleware, (req, res) => {})
+
 app.get('/', (req, res) => {
-  return res.send('Hello World')
+  return res.render('main', { age: 0 })
 })
 
 app.listen(3000)
